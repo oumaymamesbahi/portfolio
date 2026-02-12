@@ -12,8 +12,6 @@ storybook-static
 
 .config/
 
-# Cloudflare Pages functions (not used for Netlify)
-/functions
-
-# Netlify
+# Netlify (not used anymore)
 .netlify
+netlify
