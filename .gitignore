@@ -11,3 +11,9 @@ public/draco
 storybook-static
 
 .config/
+
+# Cloudflare Pages functions (not used for Netlify)
+/functions
+
+# Netlify
+.netlify
