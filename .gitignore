@@ -4,14 +4,18 @@ node_modules
 /build
 .env
 
-.wrangler
-.dev.vars
-
 public/draco
 storybook-static
 
 .config/
 
-# Netlify (not used anymore)
+# Vercel
+.vercel
+
+# Not used anymore
+.wrangler
+.dev.vars
 .netlify
 netlify
+functions
+wrangler.toml
