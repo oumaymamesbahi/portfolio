@@ -28,9 +28,7 @@ const ProfileText = ({ visible, titleId }) => (
     </Text>
     <Text className={styles.description} data-visible={visible} size="l" as="p">
       Une polyvalence que je mets aujourd'hui au service de systèmes d'information évolutifs,
-      dans des contextes collaboratifs à dimension internationale. Actuellement stagiaire chez{' '}
-      <Link href="https://www.expleogroup.com">Expleo Group</Link> à Tanger, je travaille sur
-      l'automatisation intelligente des données et les systèmes décisionnels. N'hésitez pas à me
+      dans des contextes collaboratifs à dimension internationale. N'hésitez pas à me
       contacter pour discuter de nouveaux projets !
     </Text>
   </Fragment>
