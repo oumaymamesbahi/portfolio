@@ -67,7 +67,9 @@ export const DisplacementSphere = props => {
 
     scene.current = new Scene();
 
-    material.current = new MeshPhongMaterial();
+    material.current = new MeshPhongMaterial({
+      color: 0xAF848F, // Pink/mauve color #AF848F
+    });
     material.current.onBeforeCompile = shader => {
       uniforms.current = UniformsUtils.merge([
         shader.uniforms,

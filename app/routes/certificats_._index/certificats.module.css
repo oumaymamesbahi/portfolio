@@ -1,0 +1,166 @@
+.certificatsGallery {
+  display: grid;
+  align-items: start;
+  justify-items: center;
+  grid-template-rows: 1fr auto;
+  min-height: 100vh;
+  background-color: var(--background);
+}
+
+.content {
+  width: 100%;
+  max-width: 1400px;
+  padding: var(--space5XL) var(--spaceOuter);
+
+  @media (--mediaTablet) {
+    padding: var(--space4XL) var(--spaceOuter);
+  }
+
+  @media (--mediaMobile) {
+    padding: var(--space3XL) var(--spaceOuter);
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space3XL);
+  width: 100%;
+
+  @media (--mediaTablet) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space2XL);
+  }
+
+  @media (--mediaMobile) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spaceXL);
+  }
+}
+
+.header {
+  text-align: center;
+  margin-bottom: var(--space5XL);
+  padding-top: var(--space3XL);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spaceL);
+
+  @media (--mediaTablet) {
+    margin-bottom: var(--space4XL);
+    padding-top: var(--space2XL);
+  }
+
+  @media (--mediaMobile) {
+    margin-bottom: var(--space3XL);
+    padding-top: var(--spaceXL);
+  }
+}
+
+.heading {
+  color: var(--textTitle);
+  font-size: var(--fontSizeH1);
+
+  @media (--mediaTablet) {
+    font-size: var(--fontSizeH2);
+  }
+
+  @media (--mediaMobile) {
+    font-size: var(--fontSizeH3);
+  }
+}
+
+.certificateCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spaceL);
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.6s ease forwards;
+  animation-delay: calc(var(--index) * 0.1s);
+
+  @media (--mediaMobile) {
+    gap: var(--spaceM);
+  }
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.certificateImageWrapper {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--borderRadius);
+  overflow: hidden;
+  background-color: var(--backgroundLight);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  transition: transform var(--durationM) var(--bezierFastoutSlowin),
+              box-shadow var(--durationM) var(--bezierFastoutSlowin);
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(0, 0, 0, 0.05) 100%
+    );
+    opacity: 0;
+    transition: opacity var(--durationM) ease;
+  }
+
+  .certificateCard:hover & {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 16px 50px rgba(0, 0, 0, 0.2);
+
+    &::after {
+      opacity: 1;
+    }
+  }
+}
+
+.certificateImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--durationM) var(--bezierFastoutSlowin);
+
+  .certificateCard:hover & {
+    transform: scale(1.05);
+  }
+}
+
+.certificateName {
+  text-align: center;
+  font-weight: var(--fontWeightMedium);
+  color: var(--textTitle);
+  font-size: var(--fontSizeH5);
+  transition: color var(--durationM) ease;
+
+  .certificateCard:hover & {
+    color: var(--primary);
+  }
+
+  @media (--mediaMobile) {
+    font-size: var(--fontSizeBodyL);
+  }
+}
+
+
+
+.barcode {
+  opacity: 0;
+
+  &:global {
+    animation: fade-in 0.8s var(--bezierFastoutSlowin) forwards 0.4s;
+  }
+}

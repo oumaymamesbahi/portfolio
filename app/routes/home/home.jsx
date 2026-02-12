@@ -1,9 +1,24 @@
-import gamestackTexture2Large from '~/assets/gamestack-list-large.jpg';
-import gamestackTexture2Placeholder from '~/assets/gamestack-list-placeholder.jpg';
-import gamestackTexture2 from '~/assets/gamestack-list.jpg';
-import gamestackTextureLarge from '~/assets/gamestack-login-large.jpg';
-import gamestackTexturePlaceholder from '~/assets/gamestack-login-placeholder.jpg';
-import gamestackTexture from '~/assets/gamestack-login.jpg';
+import audiospectraTextureLarge from '~/assets/audiospectra-app-large.jpg';
+import audiospectraTexturePlaceholder from '~/assets/audiospectra-app-placeholder.jpg';
+import audiospectraTexture from '~/assets/audiospectra-app.jpg';
+import eservicesTextureLarge from '~/assets/eservices-dashboard-large.jpg';
+import eservicesTexturePlaceholder from '~/assets/eservices-dashboard-placeholder.jpg';
+import eservicesTexture from '~/assets/eservices-dashboard.jpg';
+import loganalyzerTextureLarge from '~/assets/loganalyzer-large.jpg';
+import loganalyzerTexturePlaceholder from '~/assets/loganalyzer-placeholder.jpg';
+import loganalyzerTexture from '~/assets/loganalyzer.jpg';
+import nuloanTexture2Large from '~/assets/nuloan-dashboard-large.jpg';
+import nuloanTexture2Placeholder from '~/assets/nuloan-dashboard-placeholder.jpg';
+import nuloanTexture2 from '~/assets/nuloan-dashboard.jpg';
+import nuloanTextureLarge from '~/assets/nuloan-login-large.jpg';
+import nuloanTexturePlaceholder from '~/assets/nuloan-login-placeholder.jpg';
+import nuloanTexture from '~/assets/nuloan-login.jpg';
+import rideshareTexture2Large from '~/assets/rideshare-trips-large.jpg';
+import rideshareTexture2Placeholder from '~/assets/rideshare-trips-placeholder.jpg';
+import rideshareTexture2 from '~/assets/rideshare-trips.jpg';
+import rideshareTextureLarge from '~/assets/rideshare-welcome-large.jpg';
+import rideshareTexturePlaceholder from '~/assets/rideshare-welcome-placeholder.jpg';
+import rideshareTexture from '~/assets/rideshare-welcome.jpg';
 import sliceTextureLarge from '~/assets/slice-app-large.jpg';
 import sliceTexturePlaceholder from '~/assets/slice-app-placeholder.jpg';
 import sliceTexture from '~/assets/slice-app.jpg';
@@ -53,10 +68,12 @@ export const Home = () => {
   const projectOne = useRef();
   const projectTwo = useRef();
   const projectThree = useRef();
+  const projectFour = useRef();
+  const projectFive = useRef();
   const details = useRef();
 
   useEffect(() => {
-    const sections = [intro, projectOne, projectTwo, projectThree, details];
+    const sections = [intro, projectOne, projectTwo, projectThree, projectFour, projectFive, details];
 
     const sectionObserver = new IntersectionObserver(
       (entries, observer) => {
@@ -103,17 +120,17 @@ export const Home = () => {
         sectionRef={projectOne}
         visible={visibleSections.includes(projectOne.current)}
         index={1}
-        title="Designing the future of education"
-        description="Designing a platform to help educators build better online courseware"
-        buttonText="View project"
-        buttonLink="/projects/smart-sparrow"
+        title="AudioSpectra - Application web"
+        description="Application web full-stack permettant d'identifier et de classifier en temps réel les sons environnementaux grâce au deep learning, en utilisant les embeddings PANNs CNN14, la fusion d'ensembles (MLP, XGBoost, Transformer) et le stack FastAPI/Next.js/React"
+        buttonText="Voir sur GitHub"
+        buttonLink="https://github.com/MossabMilha/VentureX.git"
         model={{
           type: 'laptop',
-          alt: 'Smart Sparrow lesson builder',
+          alt: 'AudioSpectra - Touchez pour éveiller l\'IA',
           textures: [
             {
-              srcSet: `${sprTexture} 1280w, ${sprTextureLarge} 2560w`,
-              placeholder: sprTexturePlaceholder,
+              srcSet: `${audiospectraTexture} 1280w, ${audiospectraTextureLarge} 2560w`,
+              placeholder: audiospectraTexturePlaceholder,
             },
           ],
         }}
@@ -124,21 +141,21 @@ export const Home = () => {
         sectionRef={projectTwo}
         visible={visibleSections.includes(projectTwo.current)}
         index={2}
-        title="Video game progress tracking"
-        description="Design and development for a video game tracking app built in React Native"
-        buttonText="View website"
-        buttonLink="https://gamestack.hamishw.com"
+        title="RideShare - Application de Covoiturage"
+        description="Application de covoiturage en C++ avec interface Qt et intégration d'une API pour le matching intelligent des trajets pour optimiser la mobilité partagée via des itinéraires personnalisés en temps réel"
+        buttonText="Voir le projet"
+        buttonLink="https://github.com/oumaymamesbahi/CarPooling"
         model={{
           type: 'phone',
-          alt: 'App login screen',
+          alt: 'Écran d\'accueil RideShare',
           textures: [
             {
-              srcSet: `${gamestackTexture} 375w, ${gamestackTextureLarge} 750w`,
-              placeholder: gamestackTexturePlaceholder,
+              srcSet: `${rideshareTexture} 375w, ${rideshareTextureLarge} 750w`,
+              placeholder: rideshareTexturePlaceholder,
             },
             {
-              srcSet: `${gamestackTexture2} 375w, ${gamestackTexture2Large} 750w`,
-              placeholder: gamestackTexture2Placeholder,
+              srcSet: `${rideshareTexture2} 375w, ${rideshareTexture2Large} 750w`,
+              placeholder: rideshareTexture2Placeholder,
             },
           ],
         }}
@@ -148,17 +165,62 @@ export const Home = () => {
         sectionRef={projectThree}
         visible={visibleSections.includes(projectThree.current)}
         index={3}
-        title="Biomedical image collaboration"
-        description="Increasing the amount of collaboration in Slice, an app for biomedical imaging"
-        buttonText="View project"
-        buttonLink="/projects/slice"
+        title="Eservices - Application Web de Gestion Pédagogique"
+        description="Système de gestion d'affectations pédagogiques en PHP/MySQL avec authentification sécurisée, RBAC (Contrôle d'accès basé sur les rôles), automatisation des assignations et reporting dynamique"
+        buttonText="Voir le projet"
+        buttonLink="https://github.com/oumaymamesbahi/Administrative-Management-System"
         model={{
           type: 'laptop',
-          alt: 'Annotating a biomedical image in the Slice app',
+          alt: 'Tableau de bord coordinateur dans Eservices',
           textures: [
             {
-              srcSet: `${sliceTexture} 800w, ${sliceTextureLarge} 1920w`,
-              placeholder: sliceTexturePlaceholder,
+              srcSet: `${eservicesTexture} 800w, ${eservicesTextureLarge} 1920w`,
+              placeholder: eservicesTexturePlaceholder,
+            },
+          ],
+        }}
+      />
+      <ProjectSummary
+        id="project-4"
+        sectionRef={projectFour}
+        visible={visibleSections.includes(projectFour.current)}
+        index={4}
+        title="LogAnalyzer - Application de Bureau"
+        description="Plateforme Java d'Analyse intelligente des journaux système basée sur les outils Big Data (ELK) en temps réel avec détection d'anomalies par machine learning, intégration Elasticsearch/Logstash/Kafka, interface 3D JavaFX et supervision de la sécurité"
+        buttonText="Voir le projet"
+        buttonLink="https://github.com/Salmaa-chiboub/LogAnalyzerJava.git"
+        model={{
+          type: 'laptop',
+          alt: 'Command Center dans LogAnalyzer',
+          textures: [
+            {
+              srcSet: `${loganalyzerTexture} 800w, ${loganalyzerTextureLarge} 1920w`,
+              placeholder: loganalyzerTexturePlaceholder,
+            },
+          ],
+        }}
+      />
+      <ProjectSummary
+        id="project-5"
+        alternate
+        sectionRef={projectFive}
+        visible={visibleSections.includes(projectFive.current)}
+        index={5}
+        title="NULOAN - Application de Bureau"
+        description="Application de gestion de crédits bancaires en C avec interface GTK et authentification à deux facteurs 2FA via API cloud"
+        buttonText="Voir le projet"
+        buttonLink="https://github.com/oumaymamesbahi/cr-dit-bancaire.git"
+        model={{
+          type: 'phone',
+          alt: 'Écran de connexion NULOAN',
+          textures: [
+            {
+              srcSet: `${nuloanTexture} 375w, ${nuloanTextureLarge} 750w`,
+              placeholder: nuloanTexturePlaceholder,
+            },
+            {
+              srcSet: `${nuloanTexture2} 375w, ${nuloanTexture2Large} 750w`,
+              placeholder: nuloanTexture2Placeholder,
             },
           ],
         }}

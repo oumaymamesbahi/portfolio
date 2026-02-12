@@ -20,7 +20,7 @@ const baseTokens = {
   fontWeightRegular: 400,
   fontWeightMedium: 500,
   fontWeightBold: 700,
-  fontSizeH0: pxToRem(140),
+  fontSizeH0: pxToRem(115),
   fontSizeH1: pxToRem(100),
   fontSizeH2: pxToRem(58),
   fontSizeH3: pxToRem(38),
@@ -57,7 +57,7 @@ const baseTokens = {
 
 // Tokens that change based on viewport size
 const tokensDesktop = {
-  fontSizeH0: pxToRem(120),
+  fontSizeH0: pxToRem(100),
   fontSizeH1: pxToRem(80),
 };
 
@@ -67,7 +67,7 @@ const tokensLaptop = {
   maxWidthL: '1000px',
   maxWidthXL: '1100px',
   spaceOuter: '48px',
-  fontSizeH0: pxToRem(100),
+  fontSizeH0: pxToRem(85),
   fontSizeH1: pxToRem(70),
   fontSizeH2: pxToRem(50),
   fontSizeH3: pxToRem(36),
@@ -76,7 +76,7 @@ const tokensLaptop = {
 };
 
 const tokensTablet = {
-  fontSizeH0: pxToRem(80),
+  fontSizeH0: pxToRem(68),
   fontSizeH1: pxToRem(60),
   fontSizeH2: pxToRem(48),
   fontSizeH3: pxToRem(32),
@@ -86,7 +86,7 @@ const tokensTablet = {
 
 const tokensMobile = {
   spaceOuter: '24px',
-  fontSizeH0: pxToRem(56),
+  fontSizeH0: pxToRem(48),
   fontSizeH1: pxToRem(40),
   fontSizeH2: pxToRem(34),
   fontSizeH3: pxToRem(28),
@@ -110,8 +110,8 @@ const tokensMobileSmall = {
 const dark = {
   background: 'oklch(17.76% 0 0)',
   backgroundLight: 'oklch(21.78% 0 0)',
-  primary: 'oklch(84.42% 0.19 202.24)',
-  accent: 'oklch(84.42% 0.19 202.24)',
+  primary: 'oklch(65% 0.06 355)',
+  accent: 'oklch(65% 0.06 355)',
   error: 'oklch(65.91% 0.249 13.76)',
   text: 'var(--white)',
   textTitle: 'var(--text)',
@@ -123,7 +123,7 @@ const light = {
   background: 'oklch(96.12% 0 0)',
   backgroundLight: 'var(--white)',
   primary: 'var(--black)',
-  accent: 'oklch(84.42% 0.19 202.24)',
+  accent: 'oklch(65% 0.06 355)',
   error: 'oklch(63.17% 0.259 25.41)',
   text: 'var(--black)',
   textTitle: 'color-mix(in lab, var(--text) 90%, transparent)',
