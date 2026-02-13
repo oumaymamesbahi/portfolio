@@ -1,11 +1,11 @@
 [build]
   command = "npm run build"
   publish = "build/client"
-  functions = "build/server"
+  functions = "netlify/functions"
 
 [[redirects]]
   from = "/*"
-  to = "/.netlify/functions/index"
+  to = "/.netlify/functions/handler"
   status = 200
 
 [[headers]]
