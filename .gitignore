@@ -16,6 +16,4 @@ storybook-static
 .wrangler
 .dev.vars
 .netlify
-netlify
-functions
 wrangler.toml
