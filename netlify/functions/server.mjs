@@ -1,18 +1,22 @@
-// Import the Remix server build
 import * as build from '../../build/server/index.js';
+import React from 'react';
+import { PassThrough } from 'stream';
+import { RemixServer } from '@remix-run/react';
+import { renderToPipeableStream } from 'react-dom/server';
 
-export default async function netlifyHandler(event) {
+export default async function handler(event, context) {
   try {
-    const method = event.requestContext?.http?.method || 'GET';
-    const rawPath = event.rawPath || '/';
-    const rawQueryString = event.rawQueryString || '';
+    // Parse the Netlify event
+    const method = event.requestContext?.http?.method || event.httpMethod || 'GET';
+    const path = event.rawPath || event.path || '/';
+    const queryString = event.rawQueryString || event.querystring || '';
     const host = event.headers?.host || 'localhost';
+    
+    // Construct URL
+    const url = `https://${host}${path}${queryString ? '?' + queryString : ''}`;
+    console.log(`[Remix Handler] ${method} ${url}`);
 
-    const url = `https://${host}${rawPath}${rawQueryString ? '?' + rawQueryString : ''}`;
-
-    console.log(`[Remix] ${method} ${url}`);
-    console.log('[Build exports]', Object.keys(build));
-
+    // Parse body
     let body = null;
     if (event.body) {
       body = event.isBase64Encoded
@@ -20,52 +24,69 @@ export default async function netlifyHandler(event) {
         : event.body;
     }
 
+    // Create Request
     const request = new Request(url, {
       method,
       headers: new Headers(event.headers || {}),
       body: ['GET', 'HEAD'].includes(method) ? undefined : body,
     });
 
-    // Try to find the handler function
-    // Remix v2 exports it as the default export
-    let handler = build.default;
-    
-    // If no default export, try to find a handler-like function
-    if (!handler) {
-      for (const [key, value] of Object.entries(build)) {
-        if (typeof value === 'function' && key.includes('handler')) {
-          handler = value;
-          break;
+    // Create the router instance
+    const { createStaticHandler, createStaticRouter } = await import('@remix-run/router');
+    const { query } = createStaticHandler(build.routes, {
+      basename: build.basename,
+    });
+
+    // Get the context for rendering
+    const remixContext = await query(request);
+
+    // If it's a Response (redirect, error, etc), return it directly
+    if (remixContext instanceof Response) {
+      return remixContext;
+    }
+
+    // Render to HTML
+    return await new Promise((resolve, reject) => {
+      let didError = false;
+
+      const { pipe, abort } = renderToPipeableStream(
+        <RemixServer context={remixContext} url={request.url} />,
+        {
+          onShellReady() {
+            const headers = {
+              'Content-Type': 'text/html; charset=utf-8',
+            };
+
+            const stream = pipe(new PassThrough());
+            const response = new Response(stream, {
+              status: didError ? 500 : 200,
+              headers,
+            });
+
+            resolve(response);
+          },
+          onShellError(error) {
+            console.error('[Remix Render Error]', error);
+            reject(error);
+          },
+          onError(error) {
+            didError = true;
+            console.error('[Remix Error]', error);
+          },
         }
-      }
-    }
-
-    if (!handler || typeof handler !== 'function') {
-      const debugInfo = {
-        hasDefault: !!build.default,
-        defaultType: typeof build.default,
-        keys: Object.keys(build),
-      };
-      console.error('[Build Error]', debugInfo);
-      
-      return new Response(
-        `Internal Server Error: No handler found\n\n${JSON.stringify(debugInfo, null, 2)}`,
-        { status: 500, headers: { 'Content-Type': 'text/plain' } }
       );
-    }
 
-    const response = await handler(request);
-
-    if (!(response instanceof Response)) {
-      throw new Error(`Handler returned ${typeof response}, expected Response`);
-    }
-
-    return response;
+      setTimeout(abort, 5000);
+    });
   } catch (error) {
     console.error('[Handler Error]', error);
+    
     return new Response(
-      `Internal Server Error: ${error.message}`,
-      { status: 500, headers: { 'Content-Type': 'text/plain' } }
+      `Internal Server Error\n\n${error.message}\n\n${error.stack}`,
+      {
+        status: 500,
+        headers: { 'Content-Type': 'text/plain; charset=utf-8' },
+      }
     );
   }
 }
