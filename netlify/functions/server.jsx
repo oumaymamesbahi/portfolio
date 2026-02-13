@@ -4,7 +4,7 @@ import { PassThrough } from 'stream';
 import { RemixServer } from '@remix-run/react';
 import { renderToPipeableStream } from 'react-dom/server';
 
-export default async function handler(event, context) {
+export const handler = async function (event, context) {
   try {
     // Parse the Netlify event
     const method = event.requestContext?.http?.method || event.httpMethod || 'GET';
