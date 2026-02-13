@@ -1,12 +1,6 @@
 [build]
   command = "npm run build"
   publish = "build/client"
-  functions = "netlify/functions"
-
-[[redirects]]
-  from = "/*"
-  to = "/.netlify/functions/handler"
-  status = 200
 
 [[headers]]
   for = "/assets/*"
