@@ -2,7 +2,6 @@ import { vitePlugin as remix } from '@remix-run/dev';
 import { defineConfig } from 'vite';
 import jsconfigPaths from 'vite-jsconfig-paths';
 import mdx from '@mdx-js/rollup';
-import { vercelPreset } from '@vercel/remix/presets/vite.js';
 import remarkFrontmatter from 'remark-frontmatter';
 import remarkMdxFrontmatter from 'remark-mdx-frontmatter';
 import rehypeImgSize from 'rehype-img-size';
@@ -25,7 +24,6 @@ export default defineConfig({
       providerImportSource: '@mdx-js/react',
     }),
     remix({
-      presets: [vercelPreset()],
       future: {
         v3_fetcherPersist: true,
         v3_relativeSplatPath: true,
