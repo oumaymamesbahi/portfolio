@@ -10,7 +10,6 @@ export default function handleRequest(request, responseStatusCode, responseHeade
     let didError = false;
 
     const botCheck = isbot(request.headers.get('user-agent'));
-
     if (botCheck) {
       responseHeaders.set('Cache-Control', 'public, max-age=300, s-maxage=3600');
     }
