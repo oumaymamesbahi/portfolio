@@ -123,7 +123,7 @@ export const Home = () => {
         title="AudioSpectra - Application web"
         description="Application web full-stack permettant d'identifier et de classifier en temps réel les sons environnementaux grâce au deep learning, en utilisant les embeddings PANNs CNN14, la fusion d'ensembles (MLP, XGBoost, Transformer) et le stack FastAPI/Next.js/React"
         buttonText="Voir sur GitHub"
-        buttonLink="https://github.com/MossabMilha/VentureX.git"
+        buttonLink="https://github.com/oumaymamesbahi/AudioSpectra.git"
         model={{
           type: 'laptop',
           alt: 'AudioSpectra - Touchez pour éveiller l\'IA',
